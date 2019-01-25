@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
         var isMoving = right | left | up | down;
 
         _animator.SetBool("isMoving", isMoving);
-
+        
         if (right)
         {
             _spriteRenderer.flipX = false;
@@ -73,5 +73,11 @@ public class PlayerController : MonoBehaviour
     void OnTriggerExit2D(Collider2D col)
     {
         _interactable = null;
+        FindObjectOfType<DialogueManager>().EndDialogue();
+    }
+
+    void PlayRunSound()
+    {
+        AudioManager.PlayAudio("run");
     }
 }
